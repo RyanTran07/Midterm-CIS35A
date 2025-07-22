@@ -11,17 +11,18 @@ public class Order {
     // customerType = 1 (student) customerType = 2 (staff)
     private int customerType;
 
-    //
+    // Instance variables relating to money/calculations
     private double subTotal;
     private double total;
-    private double tax
+    private double tax;
     Scanner input = new Scanner(System.in);
 
 
     public Order() {
-        this.studentType = -1;
+        this.customerType = -1;
         this.subTotal = 0.0;
         this.total = 0.0;
+        this.tax = 0.0;
     }
 
     public void displayMenu() {
@@ -102,6 +103,14 @@ public class Order {
             System.out.println("1. Student\n2.Staff");
             System.out.print("Please enter the type of customer you are: ");
 
+            customerType = input.nextInt();
+
+            while(customerType < 1 || customerType > 2) {
+                System.out.print("Please choose a valid customer type (1-2): ");
+                customerType = input.nextInt();
+            }
+
+
         }
 
 
@@ -122,5 +131,20 @@ public class Order {
 
     }
 
+    public void calculate() {
+        for (int i = 0; i < arrSize; i++) {
+            subTotal += priceArr[i] * orderArr[i];
+        }
+
+        if (customerType == 2) {
+            tax = subTotal * .09;
+            total = subTotal + tax;
+        }
+
+        else if (customerType == 1) {
+            total = subTotal;
+        }
+
+    }
 
 }
