@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Order {
-
+    Scanner input = new Scanner(System.in);
     // Array instance variables
     private final int arrSize = 5;
     private String[] burgerNames = {"De Anza Burger", "Bacon Cheese", "Mushroom Swiss", "Western Burger", "Don Cali Burger"};
@@ -15,7 +15,6 @@ public class Order {
     private double subTotal;
     private double total;
     private double tax;
-    Scanner input = new Scanner(System.in);
 
 
     public Order() {
@@ -34,7 +33,12 @@ public class Order {
 
     /*
      * boolean orderArrEmpty()
+     *  Purpose: Check if the order array is empty
      *
+     *  Receives: N/A
+     *  Returns: true - if the orderArr is empty
+     *           false - if the orderArr is not empty
+     *  Output: N/A
      *
      */
     public boolean orderArrEmpty() {
@@ -65,7 +69,6 @@ public class Order {
         int userQuantity = -1;
 
         while(!orderEnded) {
-            displayMenu();
             System.out.print("Please enter a burger option (1-5), or select 6 to exit: ");
 
             // Input validation for the burger selection
@@ -155,6 +158,10 @@ public class Order {
 
 
     public void printBill() {
+        if(orderArrEmpty()) {
+            return;
+        }
+
         for (int i = 0; i < arrSize; i++) {
             if (orderArr [i] > 0) {
                 System.out.println(orderArr [i] + " " + burgerNames [i] + ": $" + String.format("%.2f", orderArr[i]*priceArr[i]));
@@ -169,6 +176,10 @@ public class Order {
     }
 
     public void calculate() {
+        if(orderArrEmpty()) {
+            return;
+        }
+
         for (int i = 0; i < arrSize; i++) {
             subTotal += priceArr[i] * orderArr[i];
         }
