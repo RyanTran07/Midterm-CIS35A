@@ -31,6 +31,7 @@ public class Order {
     private double tax;
 
 
+    // Default constructor
     public Order() {
         this.customerType = -1;
         this.subTotal = 0.0;
@@ -38,7 +39,16 @@ public class Order {
         this.tax = 0.0;
     }
 
-    // This function displays the menu.
+    /*
+     * void displayMenu()
+     * Purpose: Displays all of the menu items and their prices
+     *
+     * Receives: N/A
+     * Returns: N/A
+     * Output: All menu items and their prices
+     *
+     *
+     */
     public void displayMenu() {
         System.out.println("Menu: ");
         for(int i = 0; i < arrSize; i++) {
@@ -85,6 +95,7 @@ public class Order {
         int userBurgerSelection = -1;
         int userQuantity = -1;
 
+        // User ordering
         while(!orderEnded) {
             System.out.print("Please enter a burger option (1-5), or select 6 to exit: ");
 
@@ -92,7 +103,7 @@ public class Order {
             while (true) {
             	if (input.hasNextInt()) {
             		userBurgerSelection = input.nextInt();
-            		if (userBurgerSelection <=6 && userBurgerSelection >= 1) {
+            		if (userBurgerSelection <= 6 && userBurgerSelection >= 1) {
             			break;
             		} else {
             			System.out.print("Invalid Selection. Please choose a burger by entering a number from 1-5: ");
@@ -132,6 +143,7 @@ public class Order {
             	}
             }
 
+            // Adds user inputted quantity to the order array
             switch(userBurgerSelection) {
                 case 1:
                     orderArr[0] += userQuantity;
@@ -154,18 +166,22 @@ public class Order {
             System.out.println();
         }
 
+        // If the user exits without ordering
         if(orderArrEmpty()) {
             return;
         }
 
+
+        // Input collection for the customer type
         System.out.println("Customer Types:");
         System.out.println("1. Student\n2. Staff");
         System.out.print("Please enter the type of customer you are: ");
 
+        // Input validation for customer type
         while (true) {
             	if (input.hasNextInt()) {
             		customerType = input.nextInt();
-            		if (customerType <= 2 && customerType >=1) {
+            		if (customerType <= 2 && customerType >= 1) {
             			break;
             		}
 
@@ -184,7 +200,22 @@ public class Order {
     }
 
 
+    /*
+     * void printBill()
+     * Purpose: Prints the quantities of each item ordered, cost per item
+     *          total before tax, tax amount, and the total bill (after tax)
+     *
+     *
+     * Receives: N/A
+     * Returns: N/A
+     * Outputs: Ordered items and quantities, cost per item, total before tax
+     *          tax amount, and the total bill (after tax).
+     *
+     *
+     */
     public void printBill() {
+
+        // Don't print if nothing ordered
         if(orderArrEmpty()) {
             return;
         }
@@ -210,21 +241,37 @@ public class Order {
 
         System.out.println();
 
+        // Printing out the subtotal, tax amount and total bill
         System.out.printf("The total before tax is: $%.2f%n", subTotal);
         System.out.printf("The tax amount is: $%.2f%n", tax);
         System.out.printf("The total bill is: $%.2f%n", total);
 
     }
 
+
+    /*
+     * void calculate()
+     * Purpose: Calculate and modifies the subTotal, tax, and total instance variables
+     *
+     * Receives: N/A
+     * Returns: N/A
+     * Outputs: N/A
+     *
+     *
+     */
     public void calculate() {
+
+        // Do not calclate if the order is empty
         if(orderArrEmpty()) {
             return;
         }
 
+        // Subtotal calculation
         for (int i = 0; i < arrSize; i++) {
             subTotal += priceArr[i] * orderArr[i];
         }
 
+        // Calculations using tax
         if (customerType == 2) {
             tax = subTotal * .09;
             total = subTotal + tax;

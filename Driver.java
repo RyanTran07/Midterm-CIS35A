@@ -1,5 +1,6 @@
 /*
  * Name: Ryan Tran, Krish Kowkuntla, Erin Law
+ *
  * Description: This program is a menu-driven interaction system where a user
  *              continuosly enters their burger choice and how many burgers
  *              they want until they indicate that they want to end their order.
@@ -8,11 +9,11 @@
  *              their subtotal for all burgers, the tax charged, and the total
  *              bill.
  *
- *
  */
 
 public class Driver {
     public static void main(String[] args) {
+        // Creating the Order object and calling all methods
         Order order1 = new Order();
 
         order1.displayMenu();
@@ -21,3 +22,8 @@ public class Driver {
         order1.printBill();
     }
 }
+
+/*
+    
+
+ */
