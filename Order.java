@@ -24,6 +24,7 @@ public class Order {
         this.tax = 0.0;
     }
 
+    // This function displays the menu.
     public void displayMenu() {
         for(int i = 0; i < arrSize; i++) {
             System.out.println((i+1) + ". " + burgerNames[i] + "- $" + priceArr[i]);
@@ -89,13 +90,13 @@ public class Order {
 
             // If the user ends the order, end the while loop
             if(userBurgerSelection == 6) {
-                System.out.println("Your order has now ended.");
+                System.out.println("\nYour order has now ended.\n");
                 orderEnded = true;
                 continue;
             }
 
             // Collecting input
-            System.out.print("Please enter the number of " + burgerNames[userBurgerSelection - 1] + "that you would like to order: " );
+            System.out.print("Please enter the quantity of " + burgerNames[userBurgerSelection - 1] + "'s that you would like to order: " );
 
 
             // Input validation for the amount of burgers to order
@@ -133,27 +134,36 @@ public class Order {
 
             }
 
+            System.out.println();
+        }
 
-            System.out.println("1. Student\n2.Staff");
-            System.out.print("Please enter the type of customer you are: ");
+        if(orderArrEmpty()) {
+            return;
+        }
 
+        System.out.println("Customer Types:");
+        System.out.println("1. Student\n2. Staff");
+        System.out.print("Please enter the type of customer you are: ");
 
-            while (true) {
+        while (true) {
             	if (input.hasNextInt()) {
             		customerType = input.nextInt();
             		if (customerType <= 2 && customerType >=1) {
             			break;
-            		} else {
+            		}
+
+                    else {
             			System.out.print("Please enter a valid customer type. 1 for student or 2 for staff: ");
             		}
-            	} else {
+            	}
+
+                else {
             		input.next();
             		System.out.print("Please enter a valid customer type. 1 for student or 2 for staff: ");
             	}
-            }
-
         }
 
+        System.out.println();
     }
 
 
@@ -162,13 +172,18 @@ public class Order {
             return;
         }
 
+        System.out.println("Quantity Ordered:");
         for (int i = 0; i < arrSize; i++) {
             if (orderArr [i] > 0) {
-                System.out.println(orderArr [i] + " " + burgerNames [i] + ": $" + String.format("%.2f", orderArr[i]*priceArr[i]));
-            } else {
+                System.out.println(burgerNames[i] + ": $" + priceArr[i] + " x " + orderArr[i] + " = $" + String.format("%.2f", orderArr[i]*priceArr[i]));
+            }
+            else {
                 continue;
             }
         }
+
+        System.out.println();
+
         System.out.printf("The total before tax is: $%.2f%n", subTotal);
         System.out.printf("The tax amount is: $%.2f%n", tax);
         System.out.printf("The total bill is: $%.2f%n", total);
