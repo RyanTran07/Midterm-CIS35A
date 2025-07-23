@@ -124,7 +124,7 @@ public class Order {
             }
 
             // Collecting input
-            System.out.print("Please enter the quantity of " + burgerNames[userBurgerSelection - 1] + "'s that you would like to order: " );
+            System.out.print("Please enter the quantity of " + burgerNames[userBurgerSelection - 1] + "s that you would like to order: " );
 
 
             // Input validation for the amount of burgers to order
