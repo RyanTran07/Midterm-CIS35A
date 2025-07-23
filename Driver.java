@@ -24,6 +24,6 @@ public class Driver {
 }
 
 /*
-    
+    Sample Output 1:
 
  */
