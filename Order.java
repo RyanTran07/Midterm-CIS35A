@@ -1,7 +1,21 @@
+/*
+ * Name: Ryan Tran, Krish Kowkuntla, Erin Law
+ * Description: This program is a menu-driven interaction system where a user
+ *              continuosly enters their burger choice and how many burgers
+ *              they want until they indicate that they want to end their order.
+ *              It then asks them for what type of customer they are and prints
+ *              out their order quantity, the subtotal for each burger option,
+ *              their subtotal for all burgers, the tax charged, and the total
+ *              bill.
+ *
+ *
+ */
+
 import java.util.Scanner;
 
 public class Order {
     Scanner input = new Scanner(System.in);
+
     // Array instance variables
     private final int arrSize = 5;
     private String[] burgerNames = {"De Anza Burger", "Bacon Cheese", "Mushroom Swiss", "Western Burger", "Don Cali Burger"};
@@ -26,6 +40,7 @@ public class Order {
 
     // This function displays the menu.
     public void displayMenu() {
+        System.out.println("Menu: ");
         for(int i = 0; i < arrSize; i++) {
             System.out.println((i+1) + ". " + burgerNames[i] + " - $" + priceArr[i]);
             System.out.println();
@@ -88,6 +103,7 @@ public class Order {
             	}
             }
 
+            System.out.println();
 
             // If the user ends the order, end the while loop
             if(userBurgerSelection == 6) {
