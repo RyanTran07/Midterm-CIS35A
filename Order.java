@@ -27,7 +27,8 @@ public class Order {
     // This function displays the menu.
     public void displayMenu() {
         for(int i = 0; i < arrSize; i++) {
-            System.out.println((i+1) + ". " + burgerNames[i] + "- $" + priceArr[i]);
+            System.out.println((i+1) + ". " + burgerNames[i] + " - $" + priceArr[i]);
+            System.out.println();
         }
     }
 
@@ -172,7 +173,16 @@ public class Order {
             return;
         }
 
-        System.out.println("Quantity Ordered:");
+        // Printing out the ordered items and their quantities
+        System.out.println("Ordered Items and Quantities: ");
+        for(int i = 0; i < arrSize; i++) {
+            System.out.println(burgerNames[i] + " Quantity Ordered: " + orderArr[i]);
+        }
+
+        System.out.println();
+
+        // Printing out the cost per item, or sub total per item.
+        System.out.println("Cost Per Item:");
         for (int i = 0; i < arrSize; i++) {
             if (orderArr [i] > 0) {
                 System.out.println(burgerNames[i] + ": $" + priceArr[i] + " x " + orderArr[i] + " = $" + String.format("%.2f", orderArr[i]*priceArr[i]));
